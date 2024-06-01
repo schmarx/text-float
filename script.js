@@ -14,21 +14,35 @@ window.onload = e => {
     input.focus();
 
     input.oninput = e => {
-        console.log(e.data);
-        console.log(e.target.value);
+        console.log("");
+        let inputText = e.target.value;
 
-        if (e.data == null) {
-            if (spans.length == 0) return;
+        let spanValues = spans.map(span => span.innerHTML); // innerHTML to get spaces
+        console.log(inputText, spanValues.reduce((t, v) => t + v, ""));
+
+        let index = 0;
+        while (index < inputText.length && index < spanValues.length) {
+            console.log(`"${inputText[index]}" is "${spanValues[index]}": ${inputText[index] == spanValues[index]}`)
+            if (inputText[index] != spanValues[index]) break;
+            index++;
+        }
+        console.log(`change at ${index}`);
+
+        while (spans.length > index) {
             let span = spans.splice(spans.length - 1, 1)[0];
             span.classList.remove("span-float");
 
-            setTimeout(e => {
+            setTimeout(() => {
                 span.classList.add("span-leave");
+                setTimeout(() => {
+                    span.remove();
+                }, 200);
             }, 0);
+        }
 
-        } else {
+        while (spans.length < inputText.length) {
             let span = document.createElement("span");
-            span.innerText = e.data;
+            span.innerText = inputText[spans.length];
             span.className = "span-float";
             output.appendChild(span);
 
