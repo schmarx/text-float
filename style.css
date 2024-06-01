@@ -1,0 +1,62 @@
+html,
+body {
+    height: 100%;
+    margin: 0;
+    color: gainsboro;
+    font-family: monospace;
+}
+
+body {
+    background: #04090d;
+    box-shadow: inset 0px 0px 120px 0px #d56fe621;
+}
+
+.content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+#input {
+    font-size: 32px;
+    padding: 16px 32px;
+    background: none;
+    outline: none;
+    border: 1px solid gainsboro;
+    border-radius: 16px;
+    color: gainsboro;
+    font-family: monospace;
+    opacity: 0;
+}
+
+#output {
+    font-size: 24px;
+}
+
+@keyframes float {
+    0% {
+        top: 64px;
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        top: 0px;
+        opacity: 1;
+    }
+}
+
+.span-float {
+    position: relative;
+    animation: float 0.3s;
+}
+
+.span-leave {
+    position: relative;
+    animation: float 0.3s reverse;
+    opacity: 0;
+}
